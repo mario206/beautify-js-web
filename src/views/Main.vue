@@ -3,8 +3,8 @@
     <section class="hero has-text-centered">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">Quiz Generator</h1>
-          <h2 class="subtitle">An easy way to create a quiz</h2>
+          <h1 class="title">beautify-js</h1>
+          <h2 class="subtitle"></h2>
         </div>
       </div>
     </section>
@@ -18,7 +18,7 @@
             @textChange="onTextChange"
             @selectedChange="onSelectedChange"
           ></original-area>
-          <button class="button is-text" @click="loadDemo">Demo</button>
+          <button class="button is-text" @click="loadDemo">Reset</button>
         </div>
         <div class="column is-half">
           <quiz-area
@@ -35,57 +35,67 @@
 
 <script>
 // import compromise from 'compromise'
-import OriginalArea from '../components/OriginalArea'
-import QuizArea from '../components/QuizArea'
-import '@/typedef'
+import OriginalArea from "../components/OriginalArea";
+import QuizArea from "../components/QuizArea";
+import "@/typedef";
+
+const DEMO_STR = `/// 1
+var a = 1,b = 2,c = 3;
+///2
+function test () {
+    if(a) return console.log("1"),bar(),null;
+}
+///3
+(function(){
+  console.log("aaa");
+})(a,function(){
+  console.log("bbb");
+  (function (){
+    console.log("ccc");
+  })(a);
+});`;
 
 export default {
-  name: 'Main',
+  name: "Main",
   components: {
-    'original-area': OriginalArea,
-    'quiz-area': QuizArea,
+    "original-area": OriginalArea,
+    "quiz-area": QuizArea
   },
   data() {
     return {
-      text: '',
-      mode: 'random',
+      text: DEMO_STR,
+      mode: "random",
       /** @type {Selected[]}  */
-      selected: [],
-    }
+      selected: []
+    };
   },
   methods: {
     /** @param {string} text  */
     onTextChange(text) {
-      this.text = text
+      this.text = text;
     },
     /** @param {Selected[]} selected */
     onSelectedChange(selected) {
-      this.selected = selected
+      this.selected = selected;
     },
     /** @param {string} mode */
     onModeChange(mode) {
-      this.mode = mode
+      this.mode = mode;
     },
     loadDemo() {
-      this.text = `But you bring clay. You add more clay from the beginning
-of the world. You go to the broken, empty places. You are
-beckoned by the warm places, a sweaty manual worker who
-smiles when what he has built up collapses.
-You smile, time begins all over again. A warm towel envelops
-you up to your forehead, brings you back to the kitchen, into
-the tub on the table. Your mother's big hands wash your hair.`
+      this.text = DEMO_STR;
       this.selected = [
-        { sentenceIndex: 2, wordIndex: 8, word: 'worker' },
-        { sentenceIndex: 5, wordIndex: 6, word: 'you' },
-        { sentenceIndex: 5, wordIndex: 10, word: 'kitchen,' },
-        { sentenceIndex: 6, wordIndex: 4, word: 'table.' },
-        { sentenceIndex: 4, wordIndex: 1, word: 'smile,' },
-        { sentenceIndex: 1, wordIndex: 2, word: 'world.' },
-        { sentenceIndex: 3, wordIndex: 7, word: 'collapses.' },
-      ]
-    },
-  },
-}
+        { sentenceIndex: 2, wordIndex: 8, word: "worker" },
+        { sentenceIndex: 5, wordIndex: 6, word: "you" },
+        { sentenceIndex: 5, wordIndex: 10, word: "kitchen," },
+        { sentenceIndex: 6, wordIndex: 4, word: "table." },
+        { sentenceIndex: 4, wordIndex: 1, word: "smile," },
+        { sentenceIndex: 1, wordIndex: 2, word: "world." },
+        { sentenceIndex: 3, wordIndex: 7, word: "collapses." }
+      ];
+    }
+  }
+};
 </script>
 
 <style lang="scss">
