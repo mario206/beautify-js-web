@@ -2,55 +2,32 @@
   <div>
     <b-field label-for="original" label="SourceCode">
       <div v-if="mode === 'selection'" class="text__selection has-text-left">
-        <p
-          v-for="(sentence, sentenceIndex) in text
-            .split('\n')
-            .map(t => t.split(' '))"
-          :key="sentenceIndex"
-        >
-          <span
-            v-for="(word, wordIndex) in sentence"
-            :key="wordIndex"
-            class="is-unselectable"
-            @click="select(sentenceIndex, wordIndex, word)"
-            >{{ " " }}
-            <span
-              :class="[
-                'text__word',
-                currentlySelected(sentenceIndex, wordIndex, word)
-                  ? 'text__word--selected'
-                  : ''
-              ]"
-              v-text="word"
-            ></span
-            >{{ " " }}
-          </span>
-        </p>
       </div>
       <b-input
         v-else
         id="original"
-        rows="10"
+        rows="30"
         type="textarea"
         :value="text"
         @input="emitTextChange"
       ></b-input>
     </b-field>
     <div class="buttons has-addons is-centered">
-      <button class="button" @click="clear">Clear</button>
       <button
         :disabled="pasteDisabled"
         class="button is-warning"
-        @click="paste()"
+        @click="reset()"
       >
-        Paste
+        Reset
       </button>
+
     </div>
   </div>
 </template>
 
 <script>
 import "@/typedef";
+var DEMO_STR = require("../demoStr");
 
 export default {
   name: "OriginalArea",
@@ -67,7 +44,7 @@ export default {
     },
     text: {
       type: String,
-      default: ""
+      default: DEMO_STR,
     }
   },
   data() {
@@ -142,7 +119,10 @@ export default {
             position: "is-bottom"
           });
         });
-    }
+    },
+    reset() {
+      this.text = DEMO_STR;
+    },
   }
 };
 </script>

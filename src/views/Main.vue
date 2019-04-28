@@ -9,26 +9,51 @@
       </div>
     </section>
     <div id="app" class="container main">
-      <div class="columns is-centered">
-        <div class="column is-half">
+      <div class="columns is-full">
+        <div class="column is-5">
           <original-area
-            :text="text"
-            :selected="selected"
-            :mode="mode"
-            @textChange="onTextChange"
-            @selectedChange="onSelectedChange"
+                  :text="text"
+                  :selected="selected"
+                  :mode="mode"
+                  @textChange="onTextChange"
+                  @selectedChange="onSelectedChange"
           ></original-area>
-          <button class="button is-text" @click="loadDemo">Reset</button>
         </div>
-        <div class="column is-half">
+
+        <div>
+          <b-field label-for="original" label="options">
+            <div class="column is-4">
+              <section>
+                <b-checkbox v-model="option.renameVariable" :value="onClickCheckBox">rename&nbsp;variable</b-checkbox>
+              </section>
+              <section>
+                <b-checkbox v-model="option.renameFunName">rename&nbsp;function&nbsp;name</b-checkbox>
+              </section>
+              <section>
+                <b-checkbox v-model="option.renameFunParam">rename&nbsp;function&nbsp;param</b-checkbox>
+              </section>
+              <section>
+                <b-checkbox v-model="option.renameRequire">rename&nbsp;require</b-checkbox>
+              </section>
+              <section>
+                <b-checkbox v-model="option.renameExport">rename&nbsp;export</b-checkbox>
+              </section>
+              <section>
+                <b-checkbox v-model="option.renameLambda">rename&nbsp;Lambda&nbsp;</b-checkbox>
+              </section>
+            </div>
+          </b-field>
+        </div>
+        <div class="column is-5">
           <quiz-area
-            :text="text"
-            :selected="selected"
-            :mode="mode"
-            @modeChange="onModeChange"
+                  :text="text"
+                  :selected="selected"
+                  :mode="mode"
+                  @modeChange="onModeChange"
           ></quiz-area>
         </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -39,21 +64,7 @@ import OriginalArea from "../components/OriginalArea";
 import QuizArea from "../components/QuizArea";
 import "@/typedef";
 
-const DEMO_STR = `/// 1
-var a = 1,b = 2,c = 3;
-///2
-function test () {
-    if(a) return console.log("1"),bar(),null;
-}
-///3
-(function(){
-  console.log("aaa");
-})(a,function(){
-  console.log("bbb");
-  (function (){
-    console.log("ccc");
-  })(a);
-});`;
+const DEMO_STR = require("../demoStr");
 
 export default {
   name: "Main",
@@ -66,7 +77,15 @@ export default {
       text: DEMO_STR,
       mode: "random",
       /** @type {Selected[]}  */
-      selected: []
+      selected: [],
+      option : {
+        renameVariable : true,
+        renameFunName : false,
+        renameFunParam : false,
+        renameRequire : false,
+        renameExport : false,
+        renameLambda : false
+      }
     };
   },
   methods: {
@@ -82,17 +101,8 @@ export default {
     onModeChange(mode) {
       this.mode = mode;
     },
-    loadDemo() {
-      this.text = DEMO_STR;
-      this.selected = [
-        { sentenceIndex: 2, wordIndex: 8, word: "worker" },
-        { sentenceIndex: 5, wordIndex: 6, word: "you" },
-        { sentenceIndex: 5, wordIndex: 10, word: "kitchen," },
-        { sentenceIndex: 6, wordIndex: 4, word: "table." },
-        { sentenceIndex: 4, wordIndex: 1, word: "smile," },
-        { sentenceIndex: 1, wordIndex: 2, word: "world." },
-        { sentenceIndex: 3, wordIndex: 7, word: "collapses." }
-      ];
+    onClickCheckBox() {
+      console.log("onClickCheckBox");
     }
   }
 };

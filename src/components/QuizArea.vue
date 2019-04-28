@@ -4,26 +4,16 @@
       <b-input
         id="quiz"
         ref="quiz"
-        rows="10"
+        rows="30"
         type="textarea"
         :value="transform"
       ></b-input>
     </b-field>
     <div class="buttons has-addons is-centered">
-      <!--      <button :disabled="!transform" class="button" @click="recompute = Math.random()">
-        Shuffle
-      </button>-->
       <button :disabled="!transform" class="button is-success" @click="copy">
         Copy
       </button>
     </div>
-    <!--    <div class="block">
-      <b-radio v-model="radio" native-value="start">Start</b-radio>
-      <b-radio v-model="radio" native-value="end">End</b-radio>
-      <b-radio v-model="radio" native-value="random">Random</b-radio>
-      <b-radio v-model="radio" native-value="lines">Lines</b-radio>
-      <b-radio v-model="radio" native-value="selection">Selection</b-radio>
-    </div>-->
   </div>
 </template>
 
@@ -51,7 +41,10 @@ export default {
   data() {
     return {
       /** @desc reload transform */
-      recompute: null
+      recompute: null,
+      checkbox: false,
+      checkboxCustom: 'Yes',
+      checked : true
     };
   },
   computed: {
@@ -254,6 +247,7 @@ export default {
     }
   }
 };
+
 </script>
 
 <style scoped></style>

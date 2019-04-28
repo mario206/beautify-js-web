@@ -4,12 +4,14 @@ import Field from 'buefy/dist/components/field'
 import Input from 'buefy/dist/components/input'
 import Toast from 'buefy/dist/components/toast'
 import Radio from 'buefy/dist/components/radio'
+import CheckBox from 'buefy/dist/components/checkbox'
 
 const localVue = createLocalVue()
 localVue.use(Field)
 localVue.use(Input)
 localVue.use(Toast)
 localVue.use(Radio)
+localVue.use(CheckBox)
 
 describe('App', function() {
   test('is vue instance', () => {
