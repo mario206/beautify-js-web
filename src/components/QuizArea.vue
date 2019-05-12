@@ -36,6 +36,9 @@ export default {
     text: {
       type: String,
       default: ""
+    },
+    options: {
+      default: null
     }
   },
   data() {
@@ -43,8 +46,8 @@ export default {
       /** @desc reload transform */
       recompute: null,
       checkbox: false,
-      checkboxCustom: 'Yes',
-      checked : true
+      checkboxCustom: "Yes",
+      checked: true
     };
   },
   computed: {
@@ -63,133 +66,10 @@ export default {
       if (!this.text) {
         return;
       }
-
-      var options = {
-        code: this.text,
-        filename: ""
-      };
-
-      beautifyJS.transformCode(options);
-      if (options.errCode != 0) {
-        return options.errStr;
-      } else {
-        return options.result;
-      }
+      return this.transformCode(this.text);
     }
   },
   methods: {
-    /**
-     * @param {string[]} sentences
-     * @returns {{sentences: string[], words: string[]}}
-     */
-    linesMode(sentences) {
-      return {
-        sentences: shuffle(sentences),
-        words: shuffle(sentences.map((_, index) => `${index + 1}`))
-      };
-    },
-    /**
-     * @param {string[]} sentences
-     * @returns {{sentences: string[], words: string[]}}
-     */
-    startMode(sentences) {
-      const words = sentences.map(sentence =>
-        this.clean(sentence.split(" ")[0])
-      );
-
-      sentences = sentences.map((sentence, index) => {
-        const position = sentence.indexOf(words[index]);
-
-        return this.replaceWord(
-          sentence,
-          position,
-          position + words[index].length
-        );
-      });
-
-      return { sentences, words: shuffle(words) };
-    },
-    /**
-     * @param {string[]} sentences
-     * @returns {{sentences: string[], words: string[]}}
-     */
-    endMode(sentences) {
-      const words = sentences.map(sentence =>
-        this.clean(sentence.split(" ").pop())
-      );
-
-      sentences = sentences.map((sentence, index) => {
-        const position = sentence.lastIndexOf(words[index]);
-
-        return this.replaceWord(
-          sentence,
-          position,
-          position + words[index].length
-        );
-      });
-
-      return { sentences, words: shuffle(words) };
-    },
-    /**
-     * @param {string[]} sentences
-     * @returns {{sentences: string[], words: string[]}}
-     */
-    randomMode(sentences) {
-      const words = sentences.map(sentence => {
-        const sentenceWords = sentence.split(" ");
-        return this.clean(sample(sentenceWords));
-      });
-
-      sentences = sentences.map((sentence, index) => {
-        const position = sentence.search(
-          new RegExp(`\\b${escapeStringRegexp(words[index])}\\b`)
-        );
-
-        return this.replaceWord(
-          sentence,
-          position,
-          position + words[index].length
-        );
-      });
-
-      return { sentences, words: shuffle(words) };
-    },
-    /**
-     * @param {string[]} sentences
-     * @returns {{sentences: string[], words: string[]}}
-     */
-    selectionMode(sentences) {
-      const words = this.selected.map(word => this.clean(word.word));
-      const sentencesModified = [...sentences];
-
-      this.selected.forEach(({ sentenceIndex }, index) => {
-        const sentence = sentencesModified[sentenceIndex];
-        const position = sentence.search(
-          new RegExp(`\\b${escapeStringRegexp(words[index])}\\b`)
-        );
-
-        sentencesModified[sentenceIndex] = this.replaceWord(
-          sentence,
-          position,
-          position + words[index].length
-        );
-      });
-
-      return { sentences: sentencesModified, words: shuffle(words) };
-    },
-    /**
-     * @param {string[]} sentences
-     * @param {string[]} words
-     * @returns {string}
-     */
-    createOutput(sentences, words) {
-      const text = sentences.join("\n");
-      const answers = words
-        .map((word, index) => `${index + 1}) ${word}`)
-        .join("  ");
-
-      return `${text}\n\n${answers}`;
-    },
     /** @param {string} mode */
     onModeChange(mode) {
       this.$emit("modeChange", mode);
@@ -244,10 +124,34 @@ export default {
     /** @param {string} word */
     clean(word) {
       return word.replace(/[^\w\s']|_/g, "").replace(/\s+/g, " ");
+    },
+    onOptionChanged() {
+      console.log("QuizArea onOptionChanged");
+      void this.recompute;
+
+      this.text = this.text;
+    },
+    transformCode(code) {
+      var options = {
+        code: code,
+        filename: "",
+        bRenameLocalVariable: this.options.renameVariable,
+        bRenameFunctionName: this.options.renameFunName,
+        bRenameFunctionParam: this.options.renameFunParam,
+        bRenameRequire: this.options.renameRequire,
+        bRenameExport: this.options.renameExport,
+        bRenameLambda: this.options.renameLambda
+      };
+
+      beautifyJS.transformCode(options);
+      if (options.errCode != 0) {
+        return options.errStr;
+      } else {
+        return options.result;
+      }
     }
   }
 };
-
 </script>
 
 <style scoped></style>

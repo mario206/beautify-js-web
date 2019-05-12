@@ -1557,9 +1557,9 @@ aws4@^1.8.0:
   integrity sha512-ReZxvNHIOv88FlT7rxcXIIC0fPt4KZqZbOlivyWtXLt8ESx84zd3kMC6iK5jVeS2qt+g7ftS7ye4fi06X5rtRQ==
 
 babel-beautify-js@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/babel-beautify-js/-/babel-beautify-js-1.0.1.tgz#5b6f6c5f2c97a3b5543e50d19f661aa3b2c9b8a4"
-  integrity sha512-MsRYbkWdY285gAO9CYVpZGMqxEQ4uXJUUMsSOpY+81L1Ob5lfBO/pCnVf+xux1tjE5e42QvNitFQXrjI5zPwsg==
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/babel-beautify-js/-/babel-beautify-js-1.0.2.tgz#8a0c0d7990bfed79bf7564b608841a01b47ea1fd"
+  integrity sha512-Ps3tgFKKNSQ7uB3Tf2P3A0Y2iDFGXa88puX02aubP9qynMZ5zkbHIaMzv5BjVIJQiwe5H7mpvosoulsBvUMInA==
 
 babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
   version "6.26.0"
@@ -10024,7 +10024,7 @@ vue-template-es2015-compiler@^1.6.0, vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue@^2.6.6:
+vue@^2.6.10:
   version "2.6.10"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
   integrity sha512-ImThpeNU9HbdZL3utgMCq0oiMzAkt1mcgy3/E6zWC/G6AaQoeuFdsl9nDhTDU3X1R6FK7nsIUuRACVcjI+A2GQ==

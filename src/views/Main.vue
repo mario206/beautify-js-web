@@ -12,11 +12,11 @@
       <div class="columns is-full">
         <div class="column is-5">
           <original-area
-                  :text="text"
-                  :selected="selected"
-                  :mode="mode"
-                  @textChange="onTextChange"
-                  @selectedChange="onSelectedChange"
+            :text="text"
+            :selected="selected"
+            :mode="mode"
+            @textChange="onTextChange"
+            @selectedChange="onSelectedChange"
           ></original-area>
         </div>
 
@@ -24,36 +24,60 @@
           <b-field label-for="original" label="options">
             <div class="column is-4">
               <section>
-                <b-checkbox v-model="option.renameVariable" :value="onClickCheckBox">rename&nbsp;variable</b-checkbox>
+                <b-checkbox
+                  v-model="options.renameVariable"
+                  @input="onOptionChanged"
+                  >rename&nbsp;variable</b-checkbox
+                >
               </section>
               <section>
-                <b-checkbox v-model="option.renameFunName">rename&nbsp;function&nbsp;name</b-checkbox>
+                <b-checkbox
+                  v-model="options.renameFunName"
+                  @input="onOptionChanged"
+                  >rename&nbsp;function&nbsp;name</b-checkbox
+                >
               </section>
               <section>
-                <b-checkbox v-model="option.renameFunParam">rename&nbsp;function&nbsp;param</b-checkbox>
+                <b-checkbox
+                  v-model="options.renameFunParam"
+                  @input="onOptionChanged"
+                  >rename&nbsp;function&nbsp;param</b-checkbox
+                >
               </section>
               <section>
-                <b-checkbox v-model="option.renameRequire">rename&nbsp;require</b-checkbox>
+                <b-checkbox
+                  v-model="options.renameRequire"
+                  @input="onOptionChanged"
+                  >rename&nbsp;require</b-checkbox
+                >
               </section>
               <section>
-                <b-checkbox v-model="option.renameExport">rename&nbsp;export</b-checkbox>
+                <b-checkbox
+                  v-model="options.renameExport"
+                  @input="onOptionChanged"
+                  >rename&nbsp;export</b-checkbox
+                >
               </section>
               <section>
-                <b-checkbox v-model="option.renameLambda">rename&nbsp;Lambda&nbsp;</b-checkbox>
+                <b-checkbox
+                  v-model="options.renameLambda"
+                  @input="onOptionChanged"
+                  >rename&nbsp;Lambda</b-checkbox
+                >
               </section>
             </div>
           </b-field>
         </div>
         <div class="column is-5">
           <quiz-area
-                  :text="text"
-                  :selected="selected"
-                  :mode="mode"
-                  @modeChange="onModeChange"
+            :text="text"
+            :selected="selected"
+            :mode="mode"
+            :options="options"
+            @modeChange="onModeChange"
           ></quiz-area>
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -78,13 +102,13 @@ export default {
       mode: "random",
       /** @type {Selected[]}  */
       selected: [],
-      option : {
-        renameVariable : true,
-        renameFunName : false,
-        renameFunParam : false,
-        renameRequire : false,
-        renameExport : false,
-        renameLambda : false
+      options: {
+        renameVariable: false,
+        renameFunName: false,
+        renameFunParam: false,
+        renameRequire: false,
+        renameExport: false,
+        renameLambda: true
       }
     };
   },
@@ -101,8 +125,13 @@ export default {
     onModeChange(mode) {
       this.mode = mode;
     },
-    onClickCheckBox() {
-      console.log("onClickCheckBox");
+    onOptionChanged() {
+      console.log("onOptionChanged");
+      for (var i = 0; i <= 2; ++i) {
+        if (this.$children[i] && this.$children[i].onOptionChanged) {
+          this.$children[i].onOptionChanged();
+        }
+      }
     }
   }
 };

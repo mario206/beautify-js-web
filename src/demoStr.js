@@ -1,11 +1,8 @@
-module.exports = `
-/// 1
-var a = 1,b = 2,c = 3;
-///2
-function test () {
+module.exports = `var j = require("http-server");
+var a = 1,b = 2,c = 3;  
+function s (dd) {   
     if(a) return console.log("1"),bar(),null;
 }
-///3
 (function(){
   console.log("aaa");
 })(a,function(){
@@ -14,4 +11,5 @@ function test () {
     console.log("ccc");
   })(a);
 });
-`
+exports.log = s;
+`;
