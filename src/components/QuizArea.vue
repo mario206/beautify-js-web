@@ -140,7 +140,8 @@ export default {
         bRenameFunctionParam: this.options.renameFunParam,
         bRenameRequire: this.options.renameRequire,
         bRenameExport: this.options.renameExport,
-        bRenameLambda: this.options.renameLambda
+        bRenameLambda: this.options.renameLambda,
+        bClearState: true
       };
 
       beautifyJS.transformCode(options);

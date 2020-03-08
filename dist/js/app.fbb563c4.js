@@ -540,14 +540,15 @@
               bRenameFunctionParam: this.options.renameFunParam,
               bRenameRequire: this.options.renameRequire,
               bRenameExport: this.options.renameExport,
-              bRenameLambda: this.options.renameLambda
+              bRenameLambda: this.options.renameLambda,
+              bClearState: !0
             };
             return v.a.transformCode(t), 0 != t.errCode ? t.errStr : t.result;
           }
         }
       },
       y = C,
-      _ = Object(m["a"])(y, b, g, !1, null, "0c8bed5b", null),
+      _ = Object(m["a"])(y, b, g, !1, null, "17741506", null),
       $ = _.exports,
       O = n("8da4"),
       w = {
@@ -588,9 +589,9 @@
         }
       },
       k = w,
-      q = (n("a006"), Object(m["a"])(k, r, i, !1, null, null, null)),
-      S = q.exports,
-      j = { name: "App", components: { "main-area": S } },
+      S = (n("a006"), Object(m["a"])(k, r, i, !1, null, null, null)),
+      q = S.exports,
+      j = { name: "App", components: { "main-area": q } },
       E = j,
       R = Object(m["a"])(E, o, a, !1, null, null, null),
       F = R.exports,
@@ -629,4 +630,4 @@
   },
   b2d9: function(e, t, n) {}
 });
-//# sourceMappingURL=app.30039e3d.js.map
+//# sourceMappingURL=app.fbb563c4.js.map
