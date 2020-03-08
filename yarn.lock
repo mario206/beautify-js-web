@@ -1556,10 +1556,10 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
   integrity sha512-ReZxvNHIOv88FlT7rxcXIIC0fPt4KZqZbOlivyWtXLt8ESx84zd3kMC6iK5jVeS2qt+g7ftS7ye4fi06X5rtRQ==
 
-babel-beautify-js@^1.0.1:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/babel-beautify-js/-/babel-beautify-js-1.0.2.tgz#8a0c0d7990bfed79bf7564b608841a01b47ea1fd"
-  integrity sha512-Ps3tgFKKNSQ7uB3Tf2P3A0Y2iDFGXa88puX02aubP9qynMZ5zkbHIaMzv5BjVIJQiwe5H7mpvosoulsBvUMInA==
+babel-beautify-js@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/babel-beautify-js/-/babel-beautify-js-1.0.4.tgz#3c82a2c693bdfebaabd243e1afaa20a69df492e5"
+  integrity sha512-LuDv4XTTAY3HiB+pkcKVerlrYf9ed6bxkHKExvqmV7Y0SIOxyYcftoHLyxK98qBaD1hY5cmOxhbvV7tdg/BajA==
 
 babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
   version "6.26.0"
